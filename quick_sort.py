@@ -3,6 +3,7 @@
 import random
 import time
 import copy
+import numpy as np
 
 # Start is the index of the starting position. Finish is the index of the
 # ending position
@@ -89,6 +90,7 @@ for i in range(0,listLength):
 # In order to do the future tests, we need the original unsorted randList
 randList2 = copy.deepcopy(randList1)
 randList3 = copy.deepcopy(randList1)
+randList4 = copy.deepcopy(randList1)
 
 # Write an output file that contains the unsorted and sorted lists
 my_file = open("generatedLists.txt", "w")
@@ -102,20 +104,20 @@ my_file.write(banner)
 for item in randList1:
   my_file.write("%s\n" % item)
 
-print "Beginning nested loop sort...\n"
-startTime = time.clock()
+#print "Beginning nested loop sort...\n"
+#startTime = time.clock()
 
-for i in range(len(randList1) - 1):
-  for j in range(i + 1, len(randList1)):
-    if randList1[i] > randList1[j]:
-      randList1[i], randList1[j] = randList1[j], randList1[i]
+#for i in range(len(randList1) - 1):
+#  for j in range(i + 1, len(randList1)):
+#    if randList1[i] > randList1[j]:
+#      randList1[i], randList1[j] = randList1[j], randList1[i]
 
-endTime = time.clock()
-print "Total elapsed nested-loop time is: %.3fs" % (endTime - startTime) , "\n"
+#endTime = time.clock()
+#print "Total elapsed nested-loop time is: %.3fs" % (endTime - startTime) , "\n"
 
-my_file.write(banner)
-my_file.write("randList after nested loop sorting is:\n")
-my_file.write(banner)
+#my_file.write(banner)
+#my_file.write("randList after nested loop sorting is:\n")
+#my_file.write(banner)
 
 for item in randList1:
   my_file.write("%s\n" % item)
@@ -150,4 +152,12 @@ randList3 = randList3.sort()
 
 endTime = time.clock()
 print "Total elapsed built-in Python sorter is: %.3fs" % (endTime - startTime) \
+  , "\n"
+
+startTime = time.clock()
+
+randList4 = np.sort(randList4)
+
+endTime = time.clock()
+print "Total elapsed time for np sorter is: %.3fs" % (endTime - startTime) \
   , "\n"
